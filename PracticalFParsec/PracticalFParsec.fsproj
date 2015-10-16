@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <None Include="Script.fsx" />
+    <Compile Include="BasicParsers.fs" />
     <Compile Include="Chaining.fs" />
     <Content Include="packages.config" />
     <Content Include="app.config" />

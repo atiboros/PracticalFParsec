@@ -3,18 +3,16 @@
 open FParsec
 
 
-type P<'t> = Parser<'t, Unit>
+//type P<'t> = Parser<'t, Unit>
 
+let pJanuary = pstringCI "Jan"
+let pNumber = pint8
 
-let p1:P<_> = pstringCI "Jan"
+let pMonthJanuary = pJanuary .>> (spaces >>. pNumber)
 
-let p2:P<_> = pint8
+let pDay = (pJanuary >>. spaces) >>.pNumber
 
-let pMonth:P<_> = p1 .>> (spaces >>. p2)
-
-let pDay:P<_> = (p1 >>. spaces) >>.p2
-
-let pMonthAndDay:P<_> = p1 .>>. (spaces >>. p2)
+let pJanuaryAndDay = pJanuary .>>. (spaces >>. pNumber)
 
 let run p s = 
     let unit = ()
@@ -24,8 +22,8 @@ let run p s =
     | Failure(errorMessage, _, _) -> failwith errorMessage
      
 
-run pMonth "Jan 1"
+run pMonthJanuary "Jan 1" 
 
 run pDay "Jan 2"
 
-run pMonthAndDay "jan 3"
+run pJanuaryAndDay "jan 3"
