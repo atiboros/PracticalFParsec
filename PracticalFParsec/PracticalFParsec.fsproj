@@ -57,6 +57,7 @@
     <Compile Include="Chaining.fs" />
     <Content Include="packages.config" />
     <Content Include="app.config" />
+    <Compile Include="Choice.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">
