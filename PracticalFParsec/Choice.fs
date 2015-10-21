@@ -19,5 +19,5 @@ let run p s =
     | Failure(errorMessage, _, _) -> failwith errorMessage
      
 
-run pMonth "Jan" 
+run pMonth "Feb" 
 
