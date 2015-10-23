@@ -11,7 +11,7 @@ let pMonth =
     pstringCI "OCT"  <|> pstringCI "NOV"  <|> pstringCI "DEC"
 
 let (<||>) p1 p2 =
-    p1 <|> (attempt p2)
+    (attempt p1) <|> p2
 
 let run p s = 
     let unit = ()
@@ -25,8 +25,8 @@ run pMonth "Feb"
 
 type P<'t> = Parser<'t, Unit>
 
-let pMonthAndDay:P<_> =
-    let md monthname = pstringCI monthname .>>. (spaces >>. pint8)
+let pDayAndMonth:P<_> =
+    let md monthname =  pint8 .>>. (spaces >>. pstringCI monthname)
     md "JAN"  <||> md "FEB"  <||> md "MAR"  <||>
     md "APR"  <||> md "MAY"  <||> md "JUN"  <||>
     md "JUL"  <||> md "AUG"  <||> md "SEP"  <||>
@@ -34,7 +34,5 @@ let pMonthAndDay:P<_> =
 
      
 
-
-
-run pMonthAndDay "Mar 21"
+run pDayAndMonth "21 march"
 
