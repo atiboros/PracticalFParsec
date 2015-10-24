@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Slides", "Slides", "{B93707
 		Slides\Practical FParsec V2.pptx = Slides\Practical FParsec V2.pptx
 	EndProjectSection
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PracticalFParsec.Tests", "PracticalFParsec.Tests\PracticalFParsec.Tests.fsproj", "{C90EA656-0B5F-482E-B32A-CAD80303D2B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{1D584D7D-AAE8-4A34-BDF3-824793E02866}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D584D7D-AAE8-4A34-BDF3-824793E02866}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D584D7D-AAE8-4A34-BDF3-824793E02866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C90EA656-0B5F-482E-B32A-CAD80303D2B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C90EA656-0B5F-482E-B32A-CAD80303D2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C90EA656-0B5F-482E-B32A-CAD80303D2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C90EA656-0B5F-482E-B32A-CAD80303D2B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

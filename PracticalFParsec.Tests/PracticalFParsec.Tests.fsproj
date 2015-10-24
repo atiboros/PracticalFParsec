@@ -5,15 +5,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>1d584d7d-aae8-4a34-bdf3-824793e02866</ProjectGuid>
+    <ProjectGuid>c90ea656-0b5f-482e-b32a-cad80303d2b5</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>PracticalFParsec</RootNamespace>
-    <AssemblyName>PracticalFParsec</AssemblyName>
+    <RootNamespace>PracticalFParsec.Tests</RootNamespace>
+    <AssemblyName>PracticalFParsec.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Name>PracticalFParsec</Name>
-    <TargetFrameworkProfile />
+    <Name>PracticalFParsec.Tests</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,7 +22,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\PracticalFParsec.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\PracticalFParsec.Tests.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +31,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\PracticalFParsec.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\PracticalFParsec.Tests.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
@@ -53,12 +52,9 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <None Include="Script.fsx" />
-    <Compile Include="BasicParsers.fs" />
-    <Compile Include="Chaining.fs" />
+    <Compile Include="SimpleExpressionTests.fs" />
     <Content Include="packages.config" />
-    <Content Include="app.config" />
-    <Compile Include="Choice.fs" />
-    <Compile Include="SimpleExpression.fs" />
+    <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">
@@ -69,13 +65,33 @@
       <HintPath>..\packages\FParsec.1.0.2\lib\net40-client\FParsecCS.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FsUnit.CustomMatchers">
+      <HintPath>..\packages\Fs30Unit.MsTest.1.3.0.1\lib\Net40\FsUnit.CustomMatchers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FsUnit.MsTest">
+      <HintPath>..\packages\Fs30Unit.MsTest.1.3.0.1\lib\Net40\FsUnit.MsTest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHamcrest">
+      <HintPath>..\packages\Fs30Unit.MsTest.1.3.0.1\lib\Net40\NHamcrest.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PracticalFParsec\PracticalFParsec.fsproj">
+      <Name>PracticalFParsec</Name>
+      <Project>{1d584d7d-aae8-4a34-bdf3-824793e02866}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
