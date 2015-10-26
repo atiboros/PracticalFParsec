@@ -76,12 +76,12 @@ type SimpleExoressionTests() =
         run pExpression "x  +y" |> should equal (Add(Var("x"), Var("y")))
 
     [<TestMethod>]
-    member x.``Test parsing x + bra y ket``() = 
+    member x.``Test parsing x + ( y )``() = 
         run pExpression "x  + ( y )" |> should equal (Add(Var("x"), Var("y")))
 
     [<TestMethod>]
     member x.``Test parsing x + ( y + z)``() = 
-        run pExpression "x  + ( y + z )" |> should equal (Add(Var("x"), Add(Var("y"),Var("y"))))
+        run pExpression "x  + ( y + z )" |> should equal (Add(Var("x"), Add(Var("y"),Var("z"))))
 
     [<TestMethod>]
     member x.``Test parsing 1 * 1``() = 
@@ -98,12 +98,36 @@ type SimpleExoressionTests() =
 
     [<TestMethod>]
     member x.``Test parsing x * ( y )``() = 
-        run pExpression "x  * ( y )" |> should equal (Mul(Var("x"), Var("y")))
+        let result = run pExpression "x  * ( y )" 
+        result |> should equal (Mul(Var("x"), Var("y")))
 
     [<TestMethod>]
     member x.``Test parsing x * ( y * z)``() = 
-        run pExpression "x  * ( y * z )" |> should equal (Mul(Var("x"), Add(Var("y"),Var("y"))))
+        let result = run pExpression "x  * ( y * z )" 
+        result |> should equal (Mul(Var("x"), Mul(Var("y"),Var("z"))))
 
     [<TestMethod>]
     member x.``Test parsing x + ( y * z)``() = 
-        run pExpression "x  + ( y * z )" |> should equal (Add(Var("x"), Mul(Var("y"),Var("y"))))
+        run pExpression "x  + ( y * z )" |> should equal (Add(Var("x"), Mul(Var("y"),Var("z"))))
+
+    [<TestMethod>]
+    member x.``Test parsing x +  y * z``() = 
+        run pExpression "x  +  y * z " |> should equal (Add(Var("x"), Mul(Var("y"),Var("z"))))
+
+    [<TestMethod>]
+    member x.``Test parsing x *  y + z``() = 
+        run pExpression "x  *  y + z " |> should equal (Mul(Var("x"), Add(Var("y"),Var("z"))))
+
+    
+    [<TestMethod>]
+    member x.``Test parsing (x *  y / (z - y))^2 ``() = 
+        let result = run pExpression "(x *  y / (z - y))^2" 
+        result |> should equal
+             (Pow(
+                Mul(Var "x", 
+                    Div(Var "y", 
+                        Sub(Var "z", Var "y")
+                   )
+                ), 
+                Num 2.0))
+
