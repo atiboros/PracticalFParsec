@@ -20,8 +20,6 @@ type Expression =
     | Neg of Expression
 
 
-let bra:P<_> = pchar '(' .>> spaces
-let ket:P<_> = spaces .>> pchar ')'
 
 //let optBraketed p1 = between bra ket p1 <||> p1
 
@@ -29,6 +27,8 @@ let pNumber:P<_> = pfloat |>> Num
 
 let pExpression, pExpressionImpl = createParserForwardedToRef<Expression, unit>()
 
+let bra:P<_> = pchar '(' .>> spaces
+let ket:P<_> = spaces .>> pchar ')'
 let pExpressionInBrackets = between bra ket pExpression
 
 let pVar = 
@@ -37,8 +37,6 @@ let pVar =
         (many (letter <|> digit))
         (fun l rest -> l::rest |> System.String.Concat))
     |>> Var
-
-
 
 
 let pBinaryOp =
