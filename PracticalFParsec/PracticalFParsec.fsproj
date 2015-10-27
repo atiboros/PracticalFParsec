@@ -59,6 +59,7 @@
     <Content Include="app.config" />
     <Compile Include="Choice.fs" />
     <Compile Include="SimpleExpression.fs" />
+    <Compile Include="BuildingUpTheResult.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">
