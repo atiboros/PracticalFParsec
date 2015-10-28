@@ -35,6 +35,4 @@ let pDayAndMonth:P<_> =
     md "JUL"  <||> md "AUG"  <||> md "SEP"  <||>
     md "OCT"  <||> md "NOV"  <||> md "DEC"
 
-let pMonth     
-
 run pDayAndMonth "21 march"

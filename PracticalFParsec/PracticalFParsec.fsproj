@@ -60,6 +60,7 @@
     <Compile Include="Choice.fs" />
     <Compile Include="SimpleExpression.fs" />
     <Compile Include="BuildingUpTheResult.fs" />
+    <Compile Include="csv.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">

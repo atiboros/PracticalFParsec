@@ -118,6 +118,10 @@ type SimpleExoressionTests() =
     member x.``Test parsing x *  y + z``() = 
         run pExpression "x  *  (y + z) " |> should equal (Mul(Var("x"), Add(Var("y"),Var("z"))))
 
+    [<TestMethod>]
+    member x.``Test parsing (x *  y) + (5 + z)``() = 
+        run pExpression "(x *  y) + (5 + z) " |> should equal (Add(Mul(Var "x", Var "y"), Add(Num 5.0, Var "z")))
+
     
     [<TestMethod>]
     member x.``Test parsing (x *  y / (z - y))^2 ``() = 
