@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using CsvParserCS;
+﻿using CsvParserCS;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CsvparserCSTests

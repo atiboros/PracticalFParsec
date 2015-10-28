@@ -12,10 +12,8 @@ namespace CsvParserCS
             }
 
             var result = csvText.Split('\n')
-                .Select( line => 
-                    line.Trim().Split(',')
-                        .Select( field => field.Trim())
-                        .ToArray())
+                .Select( line => line.Trim().Split(',')
+                        .Select( field => field.Trim()).ToArray())
                 .ToArray();
 
             return result;
