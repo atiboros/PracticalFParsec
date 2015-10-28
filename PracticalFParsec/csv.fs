@@ -25,17 +25,21 @@ type P<'t> = Parser<'t, Unit>
 let (<||>) p1 p2 =
     (attempt p1) <|> p2
 
-let subField:P<_> = many (noneOf "\"") |>> System.String.Concat
+let debug (p: P<_>) stream =
+    p stream // set a breakpoint here
+
+
+let subField:P<_> = many1 (noneOf "\"") |>> System.String.Concat
 
 let escapedField, escapedFieldImpl = createParserForwardedToRef<string, unit>()
 
-let simpleField:P<_> = many (noneOf "\n\t,\"") |>> System.String.Concat
+let simpleField:P<_> = many1 (noneOf "\n\t,\"") |>> System.String.Concat <?> "Expected simple field"
 
-let quotedField = between (pchar '"') (pchar '"') escapedField
+let quotedField = between (pchar '"') (pchar '"') escapedField <?> "Expected quoted field"
 
 let ws:P<_> = skipAnyOf " \t"
 
-let optionalSpaces:P<_> = skipMany ws
+let optionalSpaces:P<_> = (attempt (skipMany ws))
 
 let rawField = simpleField <||> quotedField
 

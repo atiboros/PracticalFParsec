@@ -55,6 +55,7 @@
     <Compile Include="SimpleExpressionTests.fs" />
     <Content Include="packages.config" />
     <Content Include="App.config" />
+    <Compile Include="CvsTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">
