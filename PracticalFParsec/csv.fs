@@ -13,7 +13,7 @@ open FParsec
 //quotedField ::= '"' escapedField '"'
 //escapedField ::= subField ['"' '"' escapedField]
 //subField ::= (any char except double quote or EOF)+
-
+//
 //http://www.boyet.com/articles/csvparser.html
 
 open FParsec
@@ -31,15 +31,15 @@ let debug (p: P<_>) stream =
 
 let subField:P<_> = many1 (noneOf "\"") |>> System.String.Concat
 
-let escapedField, escapedFieldImpl = createParserForwardedToRef<string, unit>()
-
 let simpleField:P<_> = many1 (noneOf "\n\t,\"") |>> System.String.Concat <?> "Expected simple field"
-
-let quotedField = between (pchar '"') (pchar '"') escapedField <?> "Expected quoted field"
 
 let ws:P<_> = skipAnyOf " \t"
 
 let optionalSpaces:P<_> = (attempt (skipMany ws))
+
+let escapedField, escapedFieldImpl = createParserForwardedToRef<string, unit>()
+
+let quotedField = between (pchar '"') (pchar '"') escapedField <?> "Expected quoted field"
 
 let rawField = simpleField <||> quotedField
 
